@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" accessibility.tabfocus="1">
+  <meta name="apple-mobile-web-app-capable" content="yes">  
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+  <% if @js %>
+      <% @js.each do |script| %>
+          <%= "<script src='#{script}' type='text/javascript'></script>" %>
+      <% end %>
+  <% end %>
+  <% if @css %>
+      <% @css.each do |style| %>
+          <%= "<link rel='stylesheet' href='#{style}' type='text/css' />" %>
+      <% end %>
+  <% end %>
+
+</head>
+
+<body>
+ <%= yield %>
+    
+
+</body>
+</html>
