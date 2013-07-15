@@ -131,7 +131,6 @@ div.divider {
   top: 0px;
   left: 0px;
   width: 100%;
-  height: 800px;
   background: #Fff;
   overflow: hidden;
   border: 10px solid #fff;
@@ -187,11 +186,11 @@ div.divider {
 #circle {
   display: block;
   position: absolute;
-  top: -100px;
-  left: -100px;
+  top: 430px;
+  left: 395px;
   width: 232px;
   height: 316px;
-  background: url('/img/head-baseball.png');
+  background: url('/img/head-baseball2.png');
   cursor: pointer;
 }
 
@@ -205,10 +204,10 @@ div.divider {
 #anchor {
   display: block;
   position: absolute;
-  top: -100px;
-  left: -100px;
-  width: 88px;
-  height: 88px;
+  top: 430px;
+  left: 395px;
+  width: 188px;
+  height: 188px;
   font-size: 26px;
   color: #5DC59C;
   font-weight: 700;
@@ -216,7 +215,7 @@ div.divider {
   border: 2px solid #1a35ff;
   border-radius: 100px;
   cursor: pointer;
-  opacity: 0.2;
+  opacity: 1;
 }
 
 

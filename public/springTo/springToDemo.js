@@ -1,20 +1,20 @@
 var wW, wH;
-var lastX = -100; 
-var lastY = -100;
+var lastX = -440; 
+var lastY = -328;
 var trigger;
 
 
 $(function () {	
   
   
-	wW = $('#demo').width()+20;
+	wW = $('#demo').width();
 	
 	
   // console.log(window.getComputedStyle(getEl('#footer'),null).getPropertyValue('position'));
 
 	
   $(window).bind('resize', function(){
-   wW = $('#demo').width()+20;
+   wW = $('#demo').width();
    snapTo(Math.floor(wW/2),420, [100,8.5,1]);
   });
   
@@ -65,9 +65,6 @@ $(function () {
 
 
 function snapTo(x,y, springChar, delay, xSpeed, ySpeed) {
-  lastX = x;
-  lastY = y;
-  $('#anchor').css('left', x-44).css('top', y-44);
   elementSpringTo('#circle', x-46, y-46, springChar, delay, xSpeed, ySpeed);
 }
 
