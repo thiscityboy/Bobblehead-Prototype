@@ -35,7 +35,11 @@ class MyApp < Sinatra::Application
     erb :main6
   end
 
-
+  get "/both" do
+    @title = "Bobblehead Proto"
+    erb :main7, :layout => false
+  end
+  
   get "/monitor" do
     erb :monitor, :layout => false
   end
