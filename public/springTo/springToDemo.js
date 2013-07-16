@@ -1,6 +1,6 @@
 var wW, wH;
-var lastX = -440; 
-var lastY = -328;
+var lastX = -295; 
+var lastY = -100;
 var trigger;
 
 

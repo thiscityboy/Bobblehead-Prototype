@@ -183,16 +183,16 @@ div.divider {
 }
 
 
-#circle {
+/*#circle {
   display: block;
   position: absolute;
   top: 430px;
   left: 395px;
-  width: 232px;
-  height: 316px;
-  background: url('/img/head-baseball2.png');
+  width: 209px;
+  height: 278px;
+  background: url('/img/head-baseball4.png');
   cursor: pointer;
-}
+}*/
 
 #circle h1 {
   display: inline-block;

@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+ 
+<style>
+.bobble {
+  position: relative;
+  margin-left: 85px;
+  padding-top: 30px;
+    -webkit-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+</style>
+
+
+</head>
+
+
+<body>
+
+ <div id="background"><img src="/img/room-bg2.jpg" width="100%"></div>
+      
+ <img id="head" src="/img/head-baseball4.png" class="bobble" width="116">
+
+
+<script>
+window.addEventListener("deviceorientation", function(event) {
+ var beta = parseFloat((''+event.beta).replace(/([-\d]*).*/, '$1'));
+ var gamma = parseFloat((''+event.gamma).replace(/([-\d]*).*/, '$1'));
+  
+  beta = beta * .25;
+  gamma = gamma * .25;
+  
+  $('#head').attr('style',  '-webkit-transform: translate('+gamma+'px, '+beta+'px);'+
+                           '-moz-transform: translate('+gamma+'px, '+beta+'px);'+
+                           '-o-transform: translate('+gamma+'px, '+beta+'px);'+
+                           '-ms-transform: translate('+gamma+'px, '+beta+'px);'+
+                           'transform: translate('+gamma+'px, '+beta+'px);')
+    // .html('B: '+beta+'<br>G: '+gamma);
+    .html(event.accelerationIncludingGravity.x);
+}, true);
+</script>
+
+
+	</body>
+</html>

@@ -30,6 +30,12 @@ class MyApp < Sinatra::Application
     erb :main5, :layout => false
   end
 
+  get "/device" do
+    @title = "Bobblehead Proto"
+    erb :main6
+  end
+
+
   get "/monitor" do
     erb :monitor, :layout => false
   end

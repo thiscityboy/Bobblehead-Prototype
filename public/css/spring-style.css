@@ -1,6 +1,7 @@
 body {
 
 	overflow: hidden;
+  background-color: #2C2A1B;
 }
 
 
@@ -24,10 +25,10 @@ body {
 #head {
   display: block;
   position: absolute;
-  top: 380px;
-  left: 558px;
-  width: 232px;
-  height: 316px;
-  background: url('/img/head-baseball3.png');
+  top: 295px;
+  left: 398px;
+  width: 209px;
+  height: 278px;
+  background: url('/img/head-baseball4.png');
   cursor: pointer;
 }
