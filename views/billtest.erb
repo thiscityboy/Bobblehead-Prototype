@@ -26,9 +26,10 @@
     var wW, wH;
     var lastX = 378;
     var lastY = 300;
-    var trigger;
 
+    //add/remove a listener for accelerometer events
     function toggleMotionListener(state){
+        //ignore this for non-touch enabled devices or those that do not support deviceMotionEvent (i'm looking at YOU windows phone...)
         if (Modernizr.touch && window.DeviceMotionEvent) {
             if (state===0){  //off
                 window.removeEventListener('devicemotion', motionHandler, false);
@@ -43,7 +44,6 @@
 
         setTimeout(function() {
             snapTo(Math.floor(wW/2), [0,0,0]);
-            // elementSpringTo('#backSection', 200, 0, [100,8,3.5], 500, 0, 100)
         },0);
 
         $('#head').draggable({
@@ -67,18 +67,23 @@
         elementSpringTo('#head', lastX-0, lastY-0, springChar);
     }
 
+    //do stuff with the accelerometer data
     function motionHandler(eventData) {
-        var acceleration = eventData.acceleration;
-        var rotation = eventData.rotationRate;
-        var leftRight =  Math.round(rotation.gamma * 0.5);
-        var frontBack =  Math.round(rotation.beta);
-        console.log(Math.abs(acceleration.x));
+
+        var acceleration = eventData.acceleration; //speed
+        var rotation = eventData.rotationRate; //direction
+        var leftRight =  Math.round(rotation.gamma * 0.5); //left to right direction. cutting the value in half as this is the most 'violent' direction
+        var frontBack =  Math.round(rotation.beta); //front to back direction
+
         //probably want to introduce a threshold to prevent the head from constantly moving
-        if (Math.abs(acceleration.x) > 10 || Math.abs(acceleration.y) > 10){  // direction can be positive or negative, so get absolute value
+        if (Math.abs(acceleration.x) > 10 || Math.abs(acceleration.y) > 10){  // direction can be positive or negative, so get absolute value for easier checking of velocity
+
+            //move the head to something approximating the direction the device was moved to. the filter should prevent animations from overlapping, but who knows.
             $('#head').filter(':not(:animated)').animate({
                 "left":"+="+leftRight,
                 "top":"+="+frontBack
             }, {
+                //when the animation is done, call the snapback function to do the fun part
                 complete: function() {
                     snapBack([110,5.5,.5]);
                 }
