@@ -1,11 +1,8 @@
 # encoding: utf-8
 class MyApp < Sinatra::Application
-  # get "/" do
-  #   @title = "Bobblehead Proto"
-  #   @css=%w(/css/bobble.css)
-  #   @js=%w(/js/jquery.bobble.js /js/transformJS.js)
-  #   erb :main
-  # end
+  get "/" do
+    erb :billtest, :layout => false
+  end
 
   get "/accelo" do
     @title = "Bobblehead Proto"
@@ -25,10 +22,10 @@ class MyApp < Sinatra::Application
     erb :main4, :layout => :bobble_baseball
   end
 
-  get "/" do
-    @title = "Bobblehead Proto"
-    erb :main5, :layout => false
-  end
+  #get "/" do
+  #  @title = "Bobblehead Proto"
+  #  erb :main5, :layout => false
+  #end
 
   get "/device" do
     @title = "Bobblehead Proto"
@@ -47,4 +44,9 @@ class MyApp < Sinatra::Application
   get "/incompatible" do
     erb :incompatible, :layout => false
   end
+
+  #get "/b" do
+  #  erb :billtest, :layout => false
+  #end
+
 end

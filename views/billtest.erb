@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title><%= @title %></title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+  <script src="/springTo/springTo.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/modernizer.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/jquery.ui.touch-punch.min.js"></script>
+  <link rel="stylesheet" href="/springTo/springTo.css" type="text/css" media="screen" title="no title" charset="utf-8">
+  <link rel="stylesheet" href="/css/spring-style.css" type="text/css" media="screen" title="no title" charset="utf-8">
+
+
+</head>
+
+
+<body>
+
+<div id="background"><img src="/img/room-bg2.jpg" width="100%"></div>
+
+<div id="head"></div>
+
+<script>
+
+    var wW, wH;
+    var lastX = 378;
+    var lastY = 300;
+    var trigger;
+
+    function toggleMotionListener(state){
+        if (Modernizr.touch && window.DeviceMotionEvent) {
+            if (state===0){  //off
+                window.removeEventListener('devicemotion', motionHandler, false);
+            }else{
+                window.addEventListener('devicemotion', motionHandler, false);
+            }
+        }
+    }
+
+    $(function () {
+        toggleMotionListener(1);
+
+        setTimeout(function() {
+            snapTo(Math.floor(wW/2), [0,0,0]);
+            // elementSpringTo('#backSection', 200, 0, [100,8,3.5], 500, 0, 100)
+        },0);
+
+        $('#head').draggable({
+            start: function(event, ui) {
+                toggleMotionListener(0);
+                elementSpringStop('#head');
+            },
+            stop: function(event, ui) {
+                snapBack([130,5.5,1]);
+                toggleMotionListener(1);
+            }
+        });
+
+    });
+
+    function snapTo(x,y, springChar, delay, xSpeed, ySpeed) {
+        elementSpringTo('#head', x-0, y-0, springChar, delay, xSpeed, ySpeed);
+    }
+
+    function snapBack(springChar) {
+        elementSpringTo('#head', lastX-0, lastY-0, springChar);
+    }
+
+    function motionHandler(eventData) {
+        var acceleration = eventData.acceleration;
+        var rotation = eventData.rotationRate;
+        var leftRight =  Math.round(rotation.gamma * 0.5);
+        var frontBack =  Math.round(rotation.beta);
+        console.log(Math.abs(acceleration.x));
+        //probably want to introduce a threshold to prevent the head from constantly moving
+        if (Math.abs(acceleration.x) > 10 || Math.abs(acceleration.y) > 10){  // direction can be positive or negative, so get absolute value
+            $('#head').filter(':not(:animated)').animate({
+                "left":"+="+leftRight,
+                "top":"+="+frontBack
+            }, {
+                complete: function() {
+                    snapBack([110,5.5,.5]);
+                }
+            });
+        }
+    }
+
+</script>
+
+
+</body>
+</html>
